@@ -1,154 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Monica ❤️ Aravintharam</title>
 <style>
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-margin:0;font-family:Arial,sans-serif;background:#111;color:#fff;overflow:hidden;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#0f0f0f,#2a0a3d,#5a0f41);
+color:white;
+overflow-x:hidden;
 }
 .screen{
-display:none;height:100vh;padding:20px;justify-content:center;align-items:center;
-flex-direction:column;text-align:center;
-background:linear-gradient(135deg,#1a1a1a,#3a1c71,#d76d77);
+display:none;
+min-height:100vh;
+padding:24px;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+overflow-y:auto;
 }
 .active{display:flex}
-img.photo{
-width:260px;height:340px;object-fit:cover;border-radius:20px;
-border:4px solid white;box-shadow:0 10px 30px rgba(0,0,0,.4);
+.photo{
+width:220px;height:290px;object-fit:cover;
+border-radius:20px;border:3px solid white;
+box-shadow:0 0 25px rgba(255,255,255,.25);
 }
-img.couple{
-width:90%;max-width:420px;border-radius:20px;border:4px solid white;
-animation:zoom 8s infinite alternate;
+.couple{
+width:90%;max-width:420px;
+border-radius:20px;border:3px solid white;
+box-shadow:0 0 35px rgba(255,255,255,.25);
 }
-@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+h1,h2,h3{margin:10px 0}
+p{max-width:430px;line-height:1.7;font-size:16px}
 button{
-padding:14px 28px;border:none;border-radius:30px;font-size:18px;margin:10px;cursor:pointer;
+padding:14px 28px;
+border:none;border-radius:30px;
+margin-top:20px;font-size:18px;
+cursor:pointer;
 }
-.yes{background:#4CAF50;color:white;transition:.3s}
+.primary{background:white;color:#5a0f41}
+.yes{background:#22c55e;color:white;transition:.3s}
 .no{background:#ff4d6d;color:white;position:relative}
-.heart{font-size:60px;animation:pulse 1.2s infinite}
-@keyframes pulse{50%{transform:scale(1.2)}}
-.progress{width:280px;height:20px;background:#ffffff33;border-radius:20px;overflow:hidden}
+.progress{
+width:300px;height:20px;
+background:#ffffff33;border-radius:20px;
+overflow:hidden;margin:20px 0;
+}
 .bar{height:100%;width:0;background:white}
-.confetti{position:fixed;top:-50px;font-size:28px;animation:fall 4s linear forwards}
-@keyframes fall{to{transform:translateY(120vh) rotate(720deg)}}
+.confetti{
+position:fixed;top:-50px;
+font-size:28px;
+animation:fall 4s linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(120vh) rotate(720deg)}
+}
+audio{width:90%;max-width:380px}
 </style>
 </head>
 <body>
 
 <div class="screen active" id="s1">
-<img src="aravinth.jpg" class="photo">
-<h2>Once upon a time...</h2>
-<p>There was a guy who loved traveling, food and dreaming about the future.</p>
-<button onclick="next(2)">Continue ❤️</button>
+<h1>💌 One Unread Message</h1>
+<br>
+<p>Monica ❤️<br><br>
+Before I ask you something important...<br>
+I want to tell you a story.
+</p>
+<button class="primary" onclick="showScreen(2)">Open ❤️</button>
 </div>
 
 <div class="screen" id="s2">
-<img src="monica.jpg" class="photo">
-<h2>Then came a girl...</h2>
-<p>With a beautiful smile who made ordinary days special.</p>
-<button onclick="next(3)">Continue ❤️</button>
+<img src="aravinth.jpg" class="photo">
+<h2>Once upon a time...</h2>
+<p>
+There was a guy who believed that the greatest achievement in life wasn't success, wealth, or travel.<br><br>
+It was finding the right person to love, to grow with, and to build a beautiful family together.<br><br>
+He dreamed of a future filled with laughter, endless conversations, shared adventures, and a home where love would always feel like the center of everything.<br><br>
+And so, he waited patiently for the day his story would truly begin...
+</p>
+<button class="primary" onclick="showScreen(3)">Continue ❤️</button>
 </div>
 
 <div class="screen" id="s3">
-<div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center">
-<img src="aravinth.jpg" style="width:120px;height:120px;border-radius:50%;object-fit:cover">
-<div class="heart">❤️</div>
-<img src="monica.jpg" style="width:120px;height:120px;border-radius:50%;object-fit:cover">
-</div>
-<h2>And suddenly...</h2>
-<p>Everything made sense ❤️</p>
-<button onclick="startScan()">Check Compatibility</button>
+<img src="monica.jpg" class="photo">
+<h2>Then came a girl...</h2>
+<p>
+A girl with a beautiful smile, a kind heart, and a way of making ordinary moments feel special.<br><br>
+She brought warmth, happiness, and countless reasons to look forward to tomorrow.<br><br>
+With her, the future no longer felt like a distant dream. It felt real.<br><br>
+The dreams of love, companionship, family, and a lifetime of memories suddenly seemed closer than ever before.<br><br>
+Without even realizing it, she became the person he had been waiting for all those years ❤️
+</p>
+<button class="primary" onclick="showScreen(4)">Continue ❤️</button>
 </div>
 
 <div class="screen" id="s4">
-<h2>Analyzing Relationship...</h2>
+<h1>❤️ Compatibility Scanner</h1>
 <div class="progress"><div class="bar" id="bar"></div></div>
-<h1 id="pct">0%</h1>
-<p id="scanText">Checking smile compatibility...</p>
+<h2 id="pct">0%</h2>
+<p id="scan">Analyzing...</p>
 </div>
 
 <div class="screen" id="s5">
-<img src="couple.jpg" class="couple">
-<h2>Every memory with you became special...</h2>
-<p>Every dream became bigger. Every day became brighter. Because it was with you ❤️</p>
-<button onclick="next(6)">One More Thing...</button>
-</div>
-
-<div class="screen" id="s6">
-<h1>Monica ❤️</h1>
-<p style="max-width:420px;line-height:1.8">
-I choose you today.<br>
-I will choose you tomorrow.<br>
-And I will keep choosing you for the rest of my life.<br><br>
-Ready to spend forever with me? 💍
+<h1>💍 Monica ❤️</h1>
+<p>
+The future I always dreamed about...<br><br>
+The family I always hoped for...<br><br>
+The person I always waited for...<br><br>
+I found all of that in you.<br><br>
+<b>Will you marry me? 💍❤️</b>
 </p>
-<button class="yes" id="yesBtn" onclick="celebrate()">YES ❤️</button>
+
+<button class="yes" id="yesBtn" onclick="celebrate()">YES 💍</button>
 <button class="no" id="noBtn" onclick="moveNo()">NO 🙈</button>
 <p id="msg"></p>
 </div>
 
-<div class="screen" id="s7">
+<div class="screen" id="s6">
 <img src="couple.jpg" class="couple">
-<h1>🎉 SHE SAID YES 🎉</h1>
+<h1>❤️ SHE SAID YES ❤️</h1>
 <h2>Monica ❤️ Aravintharam</h2>
+<h3>The Best Chapter Begins Now ❤️</h3>
 <h3>Forever Starts Now 💍</h3>
+<button class="primary" onclick="showScreen(7)">One Last Surprise ❤️</button>
+</div>
+
+<div class="screen" id="s7">
+<h1>🎵 One Last Surprise</h1>
+<p>
+Before we begin our next chapter together...<br><br>
+I wanted to give you something special ❤️
+</p>
+<br>
+<audio controls>
+<source src="final thangamae.mp3" type="audio/mpeg">
+</audio>
+<h3>🎵 Thangamae</h3>
+<p>Sung by Aravintharam ❤️</p>
+<p>
+Thank you for being the most beautiful part of my story.<br><br>
+I love you ❤️
+</p>
 </div>
 
 <script>
-function next(n){
-document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+function showScreen(n){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
 document.getElementById('s'+n).classList.add('active');
+if(n===4) startScan();
 }
+
 function startScan(){
-next(4);
 let p=0;
 const msgs=[
-"Checking smile compatibility...",
-"Checking travel compatibility...",
-"Checking food compatibility...",
-"Checking future compatibility..."
+"Travel Compatibility ✈️",
+"Food Compatibility 🍕",
+"Family Compatibility ❤️",
+"Future Compatibility 💍"
 ];
 let i=0;
-let t=setInterval(()=>{
+const t=setInterval(()=>{
 p+=25;
 document.getElementById('bar').style.width=p+'%';
 document.getElementById('pct').innerText=p+'%';
-document.getElementById('scanText').innerText=msgs[Math.min(i++,3)];
+document.getElementById('scan').innerText=msgs[Math.min(i++,3)];
 if(p>=100){
 clearInterval(t);
-document.getElementById('scanText').innerHTML="MATCH FOUND ❤️<br>Compatibility Score: ∞%";
-setTimeout(()=>next(5),2000);
+document.getElementById('scan').innerHTML="PERFECT MATCH ❤️<br>Compatibility Score ∞%";
+setTimeout(()=>showScreen(5),2200);
 }
 },900);
 }
-const noMsgs=["😄 Nice try!","❤️ Wrong button!","💍 Try YES","🥰 Future wife detected","😂 Stop testing my app"];
+
+const noMsgs=[
+"😄 Nice try!",
+"❤️ Wrong button!",
+"💍 I think YES looks better.",
+"🥰 Future wife detected.",
+"😂 Stop testing my app!"
+];
 let c=0;
+
 function moveNo(){
-let btn=document.getElementById('noBtn');
-let yes=document.getElementById('yesBtn');
+const btn=document.getElementById('noBtn');
+const yes=document.getElementById('yesBtn');
 document.getElementById('msg').innerText=noMsgs[c%noMsgs.length];
 c++;
 btn.style.position='fixed';
 btn.style.left=(Math.random()*(window.innerWidth-120))+'px';
-btn.style.top=(Math.random()*(window.innerHeight-60))+'px';
+btn.style.top=(Math.random()*(window.innerHeight-80))+'px';
 yes.style.transform='scale('+(1+c*0.08)+')';
-if(c>8){btn.style.display='none';document.getElementById('msg').innerText='💍 NO button has resigned';}
+if(c>8){
+btn.style.display='none';
+document.getElementById('msg').innerText='💍 The NO button has resigned.';
 }
+}
+
 function celebrate(){
-next(7);
+showScreen(6);
 setInterval(()=>{
-let e=['🎉','🎊','❤️','✨','💖'];
-let d=document.createElement('div');
+const icons=['🎉','🎊','❤️','✨','💖'];
+const d=document.createElement('div');
 d.className='confetti';
-d.innerHTML=e[Math.floor(Math.random()*e.length)];
+d.innerHTML=icons[Math.floor(Math.random()*icons.length)];
 d.style.left=Math.random()*100+'vw';
 document.body.appendChild(d);
 setTimeout(()=>d.remove(),4000);
-},120);
+},150);
 }
 </script>
 </body>
