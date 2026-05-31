@@ -59,6 +59,7 @@ animation:fall 4s linear forwards;
 to{transform:translateY(120vh) rotate(720deg)}
 }
 audio{width:90%;max-width:380px}
+#msg{margin-top:25px;min-height:50px;font-size:18px;font-weight:bold}
 </style>
 </head>
 <body>
@@ -193,9 +194,10 @@ c++;
 btn.style.position='fixed';
 btn.style.left=(Math.random()*(window.innerWidth-120))+'px';
 btn.style.top=(Math.random()*(window.innerHeight-80))+'px';
-yes.style.transform='scale('+(1+c*0.08)+')';
+yes.style.transform='scale('+(1+c*0.04)+')';
 if(c>8){
 btn.style.display='none';
+document.getElementById('msg').style.marginTop='40px';
 document.getElementById('msg').innerText='💍 The NO button has resigned.';
 }
 }
